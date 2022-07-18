@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +7,13 @@ public class Main {
     static ArrayList<Student> studentArrayList = new ArrayList<>();
     static Scanner scnr = new Scanner(System.in);
     static SelectionSorter selectionSorter = new SelectionSorter();
+
+    public static void printStudents()
+    {
+        for (Student student : studentArrayList) {
+            System.out.println(student);
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -22,84 +28,44 @@ public class Main {
         studentArrayList.add(new Student(20, "Cornellius", "33 Maroon St"));
         studentArrayList.add(new Student(6, "Sabastion", "53 Black St"));
 
-        System.out.println("Choose sorting method: " +
-                "\n1. Comparator - Roll Number" +
-                "\n2. Comparator - Name" +
-                "\n3. MyMethod - Roll Number" +
-                "\n4. MyMethod - Name");
+        System.out.println("""
+                Choose sorting method:\s
+                1. Comparator - Roll Number
+                2. Comparator - Name
+                3. MyMethod - Roll Number
+                4. MyMethod - Name""");
 
         int userInput = scnr.nextInt();
 
-        switch(userInput)
-        {
-            case 1:
+        switch (userInput) {
+            case 1 -> {
                 System.out.println("Unsorted");
-
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-
+                printStudents();
                 Collections.sort(studentArrayList, new RollNoComparator());
-
                 System.out.println("Sorted");
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-                break;
-
-            case 2:
+                printStudents();
+            }
+            case 2 -> {
                 System.out.println("Unsorted");
-
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-
+                printStudents();
                 Collections.sort(studentArrayList, new NameComparator());
-
                 System.out.println("Sorted");
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-                break;
-
-            case 3:
+                printStudents();
+            }
+            case 3 -> {
                 System.out.println("Unsorted");
-
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-
+                printStudents();
                 studentArrayList = selectionSorter.sortByRollNo(studentArrayList);
-
                 System.out.println("Sorted");
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-
-                break;
-
-            case 4:
+                printStudents();
+            }
+            case 4 -> {
                 System.out.println("Unsorted");
-
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-
+                printStudents();
                 studentArrayList = selectionSorter.sortByRollName(studentArrayList);
-
                 System.out.println("Sorted");
-                for (int i = 0; i < studentArrayList.size(); i++)
-                {
-                    System.out.println(studentArrayList.get(i));
-                }
-                break;
+                printStudents();
+            }
         }
 
     }
